@@ -19,13 +19,13 @@ Installation
 Add the bundle using composer, either by requiring it on the command
 line:
 
-::
+.. code-block:: shell
 
     composer require tedivm/stash-bundle
 
 or by adding it directly to your ``composer.json`` file:
 
-::
+.. code-block:: yaml
 
     "require": {
         "tedivm/stash-bundle": "0.4.*"
@@ -33,7 +33,9 @@ or by adding it directly to your ``composer.json`` file:
 
 Add the bundle to ``app/AppKernel.php``:
 
-::
+.. code-block:: php
+
+    <?php
 
     public function registerBundles()
     {
@@ -59,7 +61,9 @@ Or a custom-defined cache pool:
 
 Then you can use the cache service directly:
 
-::
+.. code-block:: php
+
+    <?php
 
     $item = $pool->getItem($id, 'info');
 
@@ -85,7 +89,7 @@ Default Cache Service
 To get started quickly, you can define a single caching service with a
 single driver:
 
-::
+.. code-block:: yaml
 
     stash:
         drivers: [ FileSystem ]
@@ -100,7 +104,7 @@ Configuring Drivers
 You can set the individual parameters of the cache driver directly in
 the configuration:
 
-::
+.. code-block:: yaml
 
     stash:
         drivers: [ FileSystem ]
@@ -114,7 +118,7 @@ Multiple Drivers
 If you want to use multiple drivers in sequence, you can list them
 separately:
 
-::
+.. code-block:: yaml
 
     stash:
         drivers: [ Apc, FileSystem ]
@@ -137,7 +141,7 @@ representation being checked before any other drivers. In some
 circumstances, however (such as long-running CLI batch scripts) this may
 not be desirable. In those cases, the in-memory driver can be disabled:
 
-::
+.. code-block:: yaml
 
     stash:
         drivers: [ Apc ]
@@ -152,7 +156,7 @@ service can be injected into any service that takes a
 DoctrineCacheInterface object. To turn on the adapter for a service, set
 the parameter:
 
-::
+.. code-block:: yaml
 
     stash:
         drivers: [ Apc ]
@@ -163,7 +167,7 @@ For the default cache, the Adapter service will be added to the
 container under the name ``stash.adapter.doctrine.default_cache``. You
 can use it anywhere you'd use a regular Doctrine Cache object:
 
-::
+.. code-block:: yaml
 
     doctrine:
         orm:
@@ -183,7 +187,7 @@ Session Adapter
 Stash provides a session adapter to allow Symfony sessions to be stored
 directly inside the cache. To turn on the adapter, set the parameter:
 
-::
+.. code-block:: yaml
 
     stash:
         drivers: [ Apc ]
@@ -193,7 +197,7 @@ directly inside the cache. To turn on the adapter, set the parameter:
 Once it's enabled, enable it in the framework bundle and it will
 automatically be used:
 
-::
+.. code-block:: yaml
 
     framework:
         session:
@@ -205,7 +209,7 @@ Multiple Services
 You can also configure multiple services, each of which stores is
 entirely separate:
 
-::
+.. code-block:: yaml
 
     stash:
         caches:
@@ -226,7 +230,7 @@ available.
 When multiple caches are defined, you can manually define a default,
 which will be aliased to the ``stash`` service:
 
-::
+.. code-block:: yaml
 
     stash:
         default_cache: first
@@ -237,27 +241,28 @@ which will be aliased to the ``stash`` service:
 
 If you don't, the first service defined will be set as the default.
 
-Logging
-~~~~~~~
+Tracking
+~~~~~~~~
 
-StashBundle includes a module which logs the keys of all cache queries
+StashBundle includes a module which tracks the keys of all cache queries
 made during a request for debugging purposes. By default this module is
 enabled in the ``dev`` and ``test`` environments but disabled elsewhere.
 However, if you want to override the default behavior, you can enable or
 disable this behavior in the configuration:
 
-::
+.. code-block:: yaml
 
     stash:
-        logging: true # enables query logging, false to disable
+        tracking: true # enables query logging, false to disable
 
 Stash Driver Configuration
 --------------------------
 
-Each driver comes with a set of default options which can be
-individually overridden.
+Each driver comes with a set of default options which can be individually
+overridden. All of these options are documented on the Stash website's driver
+section.
 
-::
+.. code-block:: yaml
 
     FileSystem:
         dirSplit:               2

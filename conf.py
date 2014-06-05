@@ -229,7 +229,7 @@ html_theme_options = {
 
     # Add blog to links at top
     "navlinks": {
-      "Stash": "http://symfony.stashphp.com",
+      "Stash": "http://www.stashphp.com",
       "Blog": "http://blog.tedivm.com"
     },
 
